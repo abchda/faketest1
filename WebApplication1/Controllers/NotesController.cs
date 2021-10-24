@@ -5,54 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Context;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BudgetsController : ControllerBase
+    public class NotesController : ControllerBase
     {
-        private readonly BudgetContext _context;
+        private readonly NoteContext _context;
 
-        public BudgetsController(BudgetContext context)
+        public NotesController(NoteContext context)
         {
             _context = context;
         }
 
-        // GET: api/Budgets
+        // GET: api/Notes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Budget>>> GetBudgets()
+        public async Task<ActionResult<IEnumerable<Note>>> GetNotes()
         {
-            return await _context.Budgets.ToListAsync();
+            return await _context.Notes.ToListAsync();
         }
 
-        // GET: api/Budgets/5
+        // GET: api/Notes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Budget>> GetBudget(int id)
+        public async Task<ActionResult<Note>> GetNote(int id)
         {
-            var budget = await _context.Budgets.FindAsync(id);
+            var note = await _context.Notes.FindAsync(id);
 
-            if (budget == null)
+            if (note == null)
             {
                 return NotFound();
             }
 
-            return budget;
+            return note;
         }
 
-        // PUT: api/Budgets/5
+        // PUT: api/Notes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBudget(int id, Budget budget)
+        public async Task<IActionResult> PutNote(int id, Note note)
         {
-            if (id != budget.Id)
+            if (id != note.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(budget).State = EntityState.Modified;
+            _context.Entry(note).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +61,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BudgetExists(id))
+                if (!NoteExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +74,38 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/Budgets
+        // POST: api/Notes
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Budget>> PostBudget(Budget budget)
+        public async Task<ActionResult<Note>> PostNote(Note note)
         {
-            _context.Budgets.Add(budget);
+            note.CreateTime = DateTime.UtcNow;
+            _context.Notes.Add(note);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBudget", new { id = budget.Id }, budget);
+            return CreatedAtAction("GetNote", new { id = note.Id }, note);
         }
 
-        // DELETE: api/Budgets/5
+        // DELETE: api/Notes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Budget>> DeleteBudget(int id)
+        public async Task<ActionResult<Note>> DeleteNote(int id)
         {
-            var budget = await _context.Budgets.FindAsync(id);
-            if (budget == null)
+            var note = await _context.Notes.FindAsync(id);
+            if (note == null)
             {
                 return NotFound();
             }
 
-            _context.Budgets.Remove(budget);
+            _context.Notes.Remove(note);
             await _context.SaveChangesAsync();
 
-            return budget;
+            return note;
         }
 
-        private bool BudgetExists(int id)
+        private bool NoteExists(int id)
         {
-            return _context.Budgets.Any(e => e.Id == id);
+            return _context.Notes.Any(e => e.Id == id);
         }
     }
 }

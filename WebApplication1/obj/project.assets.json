@@ -8797,23 +8797,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\StudentDev\\.nuget\\packages\\": {},
+    "C:\\Users\\student\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\StudentDev\\Documents\\GitHub\\faketest1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "D:\\РУБИКОН\\2\\17.10\\faketest1(19)\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\StudentDev\\Documents\\GitHub\\faketest1\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\StudentDev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\StudentDev\\Documents\\GitHub\\faketest1\\WebApplication1\\obj\\",
+      "projectPath": "D:\\РУБИКОН\\2\\17.10\\faketest1(19)\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+      "outputPath": "D:\\РУБИКОН\\2\\17.10\\faketest1(19)\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\StudentDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using WebApplication1.Context;
 using WebApplication1.Controllers;
 
 namespace WebApplication1
@@ -26,8 +27,9 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BudgetContext>(opt =>
-                opt.UseInMemoryDatabase("Budget"));
+            services.AddCors();
+            services.AddDbContext<NoteContext>(opt => opt.UseInMemoryDatabase("TestDB"));
+            services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("TestDB"));
             services.AddControllers();
         }
 
@@ -38,6 +40,8 @@ namespace WebApplication1
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(option => option.WithOrigins("http://localhost:8080").AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
